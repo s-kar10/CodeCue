@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "minimum_chrome_version": "102",
+  "name": "LeetCode Student Buddy",
+  "version": "1.1.0",
+  "description": "Progressive Gemini hints for LeetCode problems.",
+  "action": { "default_popup": "popup/popup.html" },
+  "permissions": ["storage"],
+  "host_permissions": ["https://generativelanguage.googleapis.com/*"],
+  "content_scripts": [{
+    "matches": ["https://leetcode.com/problems/*"],
+    "js": ["content/context-extractor.js", "content/markdown-renderer.js", "content/content.js"],
+    "css": ["content/content.css"],
+    "run_at": "document_idle"
+  }],
+  "background": { "service_worker": "background/service-worker.js", "type": "module" }
+}

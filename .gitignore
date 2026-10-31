@@ -1,0 +1,20 @@
+node_modules/
+.DS_Store
+.env
+.env.*
+!.env.example
+coverage/
+*.log
+
+# Local credentials and extension signing keys
+*.pem
+*.key
+credentials.json
+
+# Generated packages and local editor settings
+dist/
+build/
+*.crx
+*.zip
+.vscode/
+.idea/

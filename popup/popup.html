@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LeetCode Student Buddy</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <main class="popup">
+    <header class="hero">
+      <p class="eyebrow">LeetCode Student Buddy</p>
+      <h1>Work toward the answer</h1>
+      <p>Four hints, one step at a time. Open a LeetCode problem to begin.</p>
+    </header>
+    <section class="card" aria-labelledby="settings-title">
+      <h2 id="settings-title">Gemini settings</h2>
+      <label for="apiKey">API key</label>
+      <input id="apiKey" type="password" autocomplete="off" placeholder="Paste to set or replace" />
+      <p id="keyStatus" class="subtle">Checking saved key…</p>
+      <label for="model">Model</label>
+      <input id="model" type="text" value="gemini-3.8-flash" spellcheck="false" />
+      <label for="strictness">Hint detail</label>
+      <select id="strictness">
+        <option value="conservative">Brief</option>
+        <option value="balanced" selected>Balanced</option>
+        <option value="generous">Detailed</option>
+      </select>
+      <div class="actions">
+        <button id="saveBtn" class="primary" type="button">Save</button>
+        <button id="testBtn" type="button">Test connection</button>
+        <button id="clearKeyBtn" type="button">Clear key</button>
+      </div>
+    </section>
+    <p class="privacy">Your key stays in local extension storage. A request sends it to Google Gemini; no key is sent to LeetCode. Problem text and optional notes are also sent to Gemini when you request a hint.</p>
+    <div id="message" class="message" role="status" aria-live="polite"></div>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

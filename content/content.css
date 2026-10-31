@@ -1,0 +1,47 @@
+#lsb-shell, #lsb-shell * { box-sizing: border-box; }
+#lsb-shell { color: #172033; font: 14px/1.5 system-ui, -apple-system, Segoe UI, sans-serif; }
+#lsb-shell [hidden] { display: none !important; }
+#lsb-shell button, #lsb-shell textarea { font: inherit; }
+#lsb-shell button:focus-visible, #lsb-shell textarea:focus-visible, #lsb-shell input:focus-visible, #lsb-shell summary:focus-visible { outline: 3px solid #2563eb; outline-offset: 2px; }
+#lsb-fab { position: fixed; z-index: 2147483600; right: 18px; bottom: 18px; border: 0; border-radius: 999px; padding: 12px 17px; background: #142c55; color: white; box-shadow: 0 10px 28px #0f172a55; cursor: pointer; font-weight: 700 !important; }
+#lsb-fab:hover { background: #21447d; }
+#lsb-panel { position: fixed; z-index: 2147483599; top: 0; right: 0; width: min(420px, 100vw); height: 100vh; height: 100dvh; background: #f8fafc; border-left: 1px solid #cbd5e1; box-shadow: -12px 0 32px #0f172a33; display: flex; flex-direction: column; }
+#lsb-panel .lsb-header { display: flex; justify-content: space-between; gap: 16px; padding: 16px 18px; color: #fff; background: #142c55; }
+#lsb-panel .lsb-eyebrow { margin: 0; color: #bfdbfe; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+#lsb-problem-title { margin: 4px 0; color: #fff; font-size: 19px; line-height: 1.3; }
+#lsb-problem-meta { margin: 0; color: #dbeafe; font-size: 12px; }
+#lsb-close { align-self: start; min-width: 34px; min-height: 34px; border: 1px solid #93c5fd; border-radius: 8px; background: transparent; color: #fff; font-size: 22px !important; cursor: pointer; }
+#lsb-panel .lsb-panel-content { overflow-y: auto; min-height: 0; }
+#lsb-panel .lsb-section { padding: 15px 18px; border-bottom: 1px solid #dbe2eb; }
+#lsb-panel h3 { margin: 0 0 8px; font-size: 14px; font-weight: 750; color: #142c55; }
+#lsb-panel p { margin: 0 0 8px; }
+#lsb-panel .lsb-muted { color: #526176; font-weight: 400; font-size: 12px; }
+#lsb-panel details { margin-top: 7px; }
+#lsb-panel summary { cursor: pointer; color: #21447d; font-weight: 650; }
+#lsb-panel .lsb-reflection { margin-top: 0; }
+#lsb-panel .lsb-reflection > summary { color: #142c55; font-weight: 750; }
+#lsb-panel .lsb-reflection[open] > summary { margin-bottom: 10px; }
+#lsb-panel ul { margin: 8px 0; padding-left: 20px; }
+#lsb-panel label { display: block; margin: 8px 0 5px; font-weight: 650; }
+#lsb-panel textarea { width: 100%; min-height: 58px; padding: 9px; resize: vertical; border: 1px solid #94a3b8; border-radius: 8px; background: white; color: #172033; }
+#lsb-panel .lsb-tier-grid { display: grid; gap: 7px; }
+#lsb-panel .lsb-tier-grid button { width: 100%; padding: 9px 11px; text-align: left; border: 1px solid #94a3b8; border-radius: 9px; background: white; color: #172033; cursor: pointer; font-weight: 650; }
+#lsb-panel .lsb-tier-grid button:hover:not(:disabled) { background: #eaf3ff; border-color: #2563eb; }
+#lsb-panel .lsb-tier-grid button:disabled { opacity: .55; cursor: not-allowed; }
+#lsb-panel .lsb-tier-grid button.lsb-done { border-color: #15803d; background: #f0fdf4; }
+#lsb-panel .lsb-gate { margin-top: 14px; padding: 10px 11px; border: 1px solid #cbd5e1; border-radius: 9px; background: #eef3fa; }
+#lsb-panel .lsb-gate label { display: flex; gap: 8px; align-items: flex-start; margin: 0; font-weight: 500; }
+#lsb-panel .lsb-gate input { margin-top: 3px; accent-color: #21447d; }
+#lsb-cooldown-text { margin: 8px 0 0 !important; }
+#lsb-panel .lsb-output-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px; }
+#lsb-status { font-size: 12px; font-weight: 700; }
+#lsb-status.lsb-info { color: #0754a2; }
+#lsb-status.lsb-success { color: #166534; }
+#lsb-status.lsb-error { color: #b42318; }
+#lsb-output-body { padding: 12px; border: 1px solid #cbd5e1; border-radius: 9px; background: white; overflow-wrap: anywhere; white-space: normal; }
+#lsb-output-body h4 { margin: 10px 0 4px; color: #142c55; font-size: 14px; }
+#lsb-output-body h4:first-child { margin-top: 0; }
+#lsb-output-body pre { padding: 10px; overflow-x: auto; border-radius: 7px; background: #172033; color: #f8fafc; white-space: pre; }
+#lsb-output-body code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 12px; }
+@media (max-width: 480px) { #lsb-panel { width: 100vw; } }
+@media (prefers-reduced-motion: reduce) { #lsb-shell * { scroll-behavior: auto !important; } }

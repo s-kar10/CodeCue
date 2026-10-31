@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Buddy UI preview — mocked</title>
+  <link rel="stylesheet" href="../content/content.css" />
+  <style>
+    body { margin: 0; background: #eef2f7; color: #172033; font: 16px/1.5 system-ui, sans-serif; }
+    main { max-width: 760px; margin: 55px 5vw; padding: 30px; background: white; border-radius: 14px; box-shadow: 0 8px 30px #142c5522; }
+    .badge { display: inline-block; border-radius: 99px; padding: 5px 12px; background: #fff1c2; font-size: 13px; font-weight: 700; }
+    h1 { margin-bottom: 4px; }
+    .sample { padding: 16px; border-left: 4px solid #2563eb; background: #f0f6ff; }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="badge">Mock preview · No LeetCode or Gemini connection</span>
+    <h1>1. Two Sum</h1>
+    <p>Given an array of integers and a target, return the indices of two numbers that add up to the target.</p>
+    <div class="sample">Input: [2, 7, 11, 15], target: 9<br />Output: [0, 1]</div>
+    <p>This local page renders the extension panel with a fixed sample hint for visual review.</p>
+  </main>
+  <script>
+    window.LeetBuddyExtractor = {
+      extractContext: () => ({
+        slug: 'two-sum', title: '1. Two Sum', difficulty: 'Easy',
+        statement: 'Given an array of integers and a target, return the indices of two numbers that add up to the target.',
+        constraints: ['2 <= nums.length <= 10^4'],
+        examples: ['Input: [2, 7, 11, 15], target: 9. Output: [0, 1]'],
+        url: 'https://leetcode.com/problems/two-sum/', ready: true
+      })
+    };
+    window.chrome = {
+      runtime: { lastError: null, sendMessage(message, callback) {
+        if (message.type === 'START_SESSION') callback({ success: true, data: { sessionId: 'mock-session' } });
+        if (message.type === 'GET_REFLECTION') callback({ success: true, data: { tried: '', stuck: '' } });
+        if (message.type === 'SAVE_REFLECTION') callback({ success: true, data: null });
+        if (message.type === 'GET_HINT') callback({ success: true, data: {
+          tierLabel: 'Tier 1 · Conceptual nudge',
+          content: '## Hint\nThink about information you could remember as you scan the array.\n## Why\nRepeatedly searching earlier values costs time.\n## Next Action\nWrite down what you would need to know about an earlier number.\n## Check Yourself\nWhat fact would let you recognize a matching pair?',
+          completedTiers: ['tier1'], confirmed: false, cooldownUntil: 0
+        } });
+      } },
+      storage: { local: { get(_key, callback) { callback({}); }, set() {} } }
+    };
+  </script>
+  <script src="../content/markdown-renderer.js"></script>
+  <script src="../content/content.js"></script>
+  <script>
+    setTimeout(() => {
+      document.querySelector('#lsb-fab').click();
+      document.querySelector('[data-tier="tier1"]').click();
+    }, 100);
+  </script>
+</body>
+</html>
