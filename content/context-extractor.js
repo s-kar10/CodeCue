@@ -93,5 +93,5 @@
     };
   }
 
-  window.LeetBuddyExtractor = { extractContext, problemSlug };
+  window.CodeCueExtractor = { extractContext, problemSlug };
 })();

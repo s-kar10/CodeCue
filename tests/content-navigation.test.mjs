@@ -44,8 +44,8 @@ test('SPA navigation resets progress and discards a late hint response', async (
   await tick();
   finishHint({ success: true, data: { tierLabel: 'Old hint', content: 'Old problem solution', completedTiers: ['tier1'], confirmed: false, cooldownUntil: 0 } });
   await tick();
-  assert.match(window.document.querySelector('#lsb-problem-title').textContent, /Valid Parentheses/);
-  assert.doesNotMatch(window.document.querySelector('#lsb-output-body').textContent, /Old problem solution/);
+  assert.match(window.document.querySelector('#codecue-problem-title').textContent, /Valid Parentheses/);
+  assert.doesNotMatch(window.document.querySelector('#codecue-output-body').textContent, /Old problem solution/);
   assert.equal(window.document.querySelector('[data-tier="tier2"]').disabled, true);
   assert.equal(window.document.querySelector('[data-tier="tier1"]').disabled, false);
   dom.window.close();

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "minimum_chrome_version": "102",
-  "name": "LeetCode Student Buddy",
+  "name": "CodeCue",
   "version": "1.1.0",
   "description": "Progressive Gemini hints for LeetCode problems.",
   "action": { "default_popup": "popup/popup.html" },

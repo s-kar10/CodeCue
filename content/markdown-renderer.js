@@ -30,5 +30,5 @@
     if (inCode) parts.push('</code></pre>');
     return parts.join('');
   }
-  window.LeetBuddyMarkdown = { toHtml };
+  window.CodeCueMarkdown = { toHtml };
 })();

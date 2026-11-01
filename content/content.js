@@ -1,6 +1,6 @@
 (() => {
-  if (window.__leetBuddyInjected) return;
-  window.__leetBuddyInjected = true;
+  if (window.__codeCueInjected) return;
+  window.__codeCueInjected = true;
 
   const state = {
     slug: '', context: null, sessionId: '', version: 0, completedTiers: [],
@@ -8,66 +8,66 @@
   };
   const order = ['tier1', 'tier2', 'tier3', 'tier4'];
   const shell = document.createElement('div');
-  shell.id = 'lsb-shell';
+  shell.id = 'codecue-shell';
   shell.innerHTML = `
-    <button id="lsb-fab" type="button" aria-controls="lsb-panel" aria-expanded="false">Open Student Buddy</button>
-    <aside id="lsb-panel" aria-labelledby="lsb-problem-title" hidden>
-      <header class="lsb-header">
-        <div><p class="lsb-eyebrow">LeetCode Student Buddy</p><h2 id="lsb-problem-title">Loading problem…</h2><p id="lsb-problem-meta"></p></div>
-        <button id="lsb-close" type="button" aria-label="Close Student Buddy">×</button>
+    <button id="codecue-fab" type="button" aria-controls="codecue-panel" aria-expanded="false">Open CodeCue</button>
+    <aside id="codecue-panel" aria-labelledby="codecue-problem-title" hidden>
+      <header class="codecue-header">
+        <div><p class="codecue-eyebrow">CodeCue</p><h2 id="codecue-problem-title">Loading problem…</h2><p id="codecue-problem-meta"></p></div>
+        <button id="codecue-close" type="button" aria-label="Close CodeCue">×</button>
       </header>
-      <div class="lsb-panel-content">
-        <section class="lsb-section" aria-labelledby="lsb-context-heading">
-          <h3 id="lsb-context-heading">Problem snapshot</h3>
-          <p id="lsb-summary"></p>
-          <details><summary>Constraints</summary><ul id="lsb-constraints"></ul></details>
-          <details><summary>Examples</summary><ul id="lsb-examples"></ul></details>
+      <div class="codecue-panel-content">
+        <section class="codecue-section" aria-labelledby="codecue-context-heading">
+          <h3 id="codecue-context-heading">Problem snapshot</h3>
+          <p id="codecue-summary"></p>
+          <details><summary>Constraints</summary><ul id="codecue-constraints"></ul></details>
+          <details><summary>Examples</summary><ul id="codecue-examples"></ul></details>
         </section>
-        <details class="lsb-section lsb-reflection">
-          <summary id="lsb-reflection-heading">Your approach <span class="lsb-muted">(optional)</span></summary>
-          <label for="lsb-tried">What have you tried?</label>
-          <textarea id="lsb-tried" rows="2" maxlength="800" placeholder="I tried a brute-force loop…"></textarea>
-          <label for="lsb-stuck">Where are you stuck?</label>
-          <textarea id="lsb-stuck" rows="2" maxlength="800" placeholder="I’m unsure how to avoid repeated work…"></textarea>
+        <details class="codecue-section codecue-reflection">
+          <summary id="codecue-reflection-heading">Your approach <span class="codecue-muted">(optional)</span></summary>
+          <label for="codecue-tried">What have you tried?</label>
+          <textarea id="codecue-tried" rows="2" maxlength="800" placeholder="I tried a brute-force loop…"></textarea>
+          <label for="codecue-stuck">Where are you stuck?</label>
+          <textarea id="codecue-stuck" rows="2" maxlength="800" placeholder="I’m unsure how to avoid repeated work…"></textarea>
         </details>
-        <section class="lsb-section" aria-labelledby="lsb-tiers-heading">
-          <h3 id="lsb-tiers-heading">Choose a hint</h3>
-          <p class="lsb-muted">Each level unlocks after the previous hint is shown.</p>
-          <div class="lsb-tier-grid">
+        <section class="codecue-section" aria-labelledby="codecue-tiers-heading">
+          <h3 id="codecue-tiers-heading">Choose a hint</h3>
+          <p class="codecue-muted">Each level unlocks after the previous hint is shown.</p>
+          <div class="codecue-tier-grid">
             <button type="button" data-tier="tier1">1 · Conceptual nudge</button>
             <button type="button" data-tier="tier2">2 · Strategy and insight</button>
             <button type="button" data-tier="tier3">3 · Plan and edge cases</button>
             <button type="button" data-tier="tier4">4 · Full solution</button>
           </div>
-          <div class="lsb-gate">
-            <label for="lsb-confirm"><input id="lsb-confirm" type="checkbox" disabled /> I understand the full solution may reduce my independent practice.</label>
-            <p id="lsb-cooldown-text" class="lsb-muted"></p>
+          <div class="codecue-gate">
+            <label for="codecue-confirm"><input id="codecue-confirm" type="checkbox" disabled /> I understand the full solution may reduce my independent practice.</label>
+            <p id="codecue-cooldown-text" class="codecue-muted"></p>
           </div>
         </section>
-        <section class="lsb-section lsb-output" aria-labelledby="lsb-output-title">
-          <div class="lsb-output-heading"><h3 id="lsb-output-title">Hint</h3><span id="lsb-status" role="status" aria-live="polite"></span></div>
-          <article id="lsb-output-body"><p>Start with the first hint when the problem description is ready.</p></article>
+        <section class="codecue-section codecue-output" aria-labelledby="codecue-output-title">
+          <div class="codecue-output-heading"><h3 id="codecue-output-title">Hint</h3><span id="codecue-status" role="status" aria-live="polite"></span></div>
+          <article id="codecue-output-body"><p>Start with the first hint when the problem description is ready.</p></article>
         </section>
       </div>
     </aside>`;
   document.body.appendChild(shell);
 
   const get = (selector) => shell.querySelector(selector);
-  const panel = get('#lsb-panel');
-  const fab = get('#lsb-fab');
-  const close = get('#lsb-close');
-  const title = get('#lsb-problem-title');
-  const meta = get('#lsb-problem-meta');
-  const summary = get('#lsb-summary');
-  const constraints = get('#lsb-constraints');
-  const examples = get('#lsb-examples');
-  const outputTitle = get('#lsb-output-title');
-  const output = get('#lsb-output-body');
-  const status = get('#lsb-status');
-  const confirm = get('#lsb-confirm');
-  const cooldown = get('#lsb-cooldown-text');
-  const tried = get('#lsb-tried');
-  const stuck = get('#lsb-stuck');
+  const panel = get('#codecue-panel');
+  const fab = get('#codecue-fab');
+  const close = get('#codecue-close');
+  const title = get('#codecue-problem-title');
+  const meta = get('#codecue-problem-meta');
+  const summary = get('#codecue-summary');
+  const constraints = get('#codecue-constraints');
+  const examples = get('#codecue-examples');
+  const outputTitle = get('#codecue-output-title');
+  const output = get('#codecue-output-body');
+  const status = get('#codecue-status');
+  const confirm = get('#codecue-confirm');
+  const cooldown = get('#codecue-cooldown-text');
+  const tried = get('#codecue-tried');
+  const stuck = get('#codecue-stuck');
   const tierButtons = [...shell.querySelectorAll('[data-tier]')];
 
   function send(payload) {
@@ -80,11 +80,11 @@
 
   function setStatus(message, tone = '') {
     status.textContent = message;
-    status.className = tone ? `lsb-${tone}` : '';
+    status.className = tone ? `codecue-${tone}` : '';
   }
 
   function showOutput(message, markdown = false) {
-    if (markdown) output.innerHTML = window.LeetBuddyMarkdown.toHtml(message);
+    if (markdown) output.innerHTML = window.CodeCueMarkdown.toHtml(message);
     else output.textContent = message;
   }
 
@@ -111,7 +111,7 @@
     for (const button of tierButtons) {
       const tier = button.dataset.tier;
       button.disabled = !canRequest(tier);
-      button.classList.toggle('lsb-done', state.completedTiers.includes(tier));
+      button.classList.toggle('codecue-done', state.completedTiers.includes(tier));
       button.setAttribute('aria-label', `${button.textContent.trim()}${state.completedTiers.includes(tier) ? ', viewed' : ''}`);
     }
     const firstThreeDone = state.completedTiers.includes('tier3');
@@ -187,7 +187,7 @@
   }
 
   function checkProblem() {
-    const context = window.LeetBuddyExtractor.extractContext();
+    const context = window.CodeCueExtractor.extractContext();
     fab.hidden = !context.slug || state.panelOpen;
     if (!context.slug) {
       if (state.slug) {

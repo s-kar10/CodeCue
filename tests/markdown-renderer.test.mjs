@@ -8,7 +8,7 @@ const script = readFileSync(new URL('../content/markdown-renderer.js', import.me
 test('model text is escaped while code fences remain readable', () => {
   const dom = new JSDOM('', { runScripts: 'outside-only' });
   dom.window.eval(script);
-  const html = dom.window.LeetBuddyMarkdown.toHtml('## Hint\n<img src=x onerror=alert(1)>\n```js\nreturn "<unsafe>";\n```');
+  const html = dom.window.CodeCueMarkdown.toHtml('## Hint\n<img src=x onerror=alert(1)>\n```js\nreturn "<unsafe>";\n```');
   assert.doesNotMatch(html, /<img|<unsafe>/);
   assert.match(html, /&lt;img/);
   assert.match(html, /<pre><code>return/);

@@ -1,8 +1,8 @@
-# LeetCode Student Buddy
+# CodeCue
 
 A Chrome Manifest V3 extension that adds a guided hint panel to LeetCode problem pages. It requests four progressively more revealing hints from Gemini. The first three hints aim to preserve the student's reasoning; the full solution requires those hints, an acknowledgement, and a 12-second pause.
 
-![Mocked Student Buddy panel showing a Tier 1 hint](docs/images/panel-mock.png)
+![Mocked CodeCue panel showing a Tier 1 hint](docs/images/panel-mock.png)
 
 *This screenshot was rendered in headless Chrome from [a local preview](docs/demo-preview.html) with a fixed response. It is a visual fixture, not a live LeetCode or Gemini capture.*
 
@@ -18,7 +18,7 @@ A Chrome Manifest V3 extension that adds a guided hint panel to LeetCode problem
 1. Use Chrome 102 or newer. Clone or download this repository. No build step is needed for the extension.
 2. Open `chrome://extensions`, turn on **Developer mode**, choose **Load unpacked**, and select the repository root (the folder containing `manifest.json`).
 3. Open the extension popup. Paste a Gemini API key, leave the default model or enter a model available to your key, and click **Save**. **Test connection** sends a small request to Gemini and may count toward API usage.
-4. Open `https://leetcode.com/problems/two-sum/` (or another problem). Click **Open Student Buddy** in the lower right. If the description is still loading, wait for **Ready for hint 1**.
+4. Open `https://leetcode.com/problems/two-sum/` (or another problem). Click **Open CodeCue** in the lower right. If the description is still loading, wait for **Ready for hint 1**.
 5. Request hints in order. After hint 3, acknowledge the warning and wait for the solution button to enable.
 
 The configured default model is `gemini-3.8-flash`; its availability has not been verified. Choose a model available to your key using the [Gemini model documentation](https://ai.google.dev/gemini-api/docs/models), and update the model field in the popup if needed. The API key is passed in the [`x-goog-api-key` header](https://ai.google.dev/api), rather than in the URL.

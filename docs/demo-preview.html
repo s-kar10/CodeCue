@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Student Buddy UI preview — mocked</title>
+  <title>CodeCue UI preview — mocked</title>
   <link rel="stylesheet" href="../content/content.css" />
   <style>
     body { margin: 0; background: #eef2f7; color: #172033; font: 16px/1.5 system-ui, sans-serif; }
@@ -22,7 +22,7 @@
     <p>This local page renders the extension panel with a fixed sample hint for visual review.</p>
   </main>
   <script>
-    window.LeetBuddyExtractor = {
+    window.CodeCueExtractor = {
       extractContext: () => ({
         slug: 'two-sum', title: '1. Two Sum', difficulty: 'Easy',
         statement: 'Given an array of integers and a target, return the indices of two numbers that add up to the target.',
@@ -49,7 +49,7 @@
   <script src="../content/content.js"></script>
   <script>
     setTimeout(() => {
-      document.querySelector('#lsb-fab').click();
+      document.querySelector('#codecue-fab').click();
       document.querySelector('[data-tier="tier1"]').click();
     }, 100);
   </script>

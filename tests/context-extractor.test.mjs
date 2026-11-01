@@ -15,9 +15,9 @@ const description = `
   </div>`;
 
 test('extracts problem text, examples and constraints from description only', () => {
-  const dom = new JSDOM(`<!doctype html><title>Two Sum - LeetCode</title>${description}<aside id="lsb-shell">Full solution Medium</aside>`, { url: 'https://leetcode.com/problems/two-sum/', runScripts: 'outside-only' });
+  const dom = new JSDOM(`<!doctype html><title>Two Sum - LeetCode</title>${description}<aside id="codecue-shell">Full solution Medium</aside>`, { url: 'https://leetcode.com/problems/two-sum/', runScripts: 'outside-only' });
   dom.window.eval(script);
-  const result = dom.window.LeetBuddyExtractor.extractContext();
+  const result = dom.window.CodeCueExtractor.extractContext();
   assert.equal(result.slug, 'two-sum');
   assert.equal(result.title, '1. Two Sum');
   assert.equal(result.difficulty, 'Easy');
@@ -32,7 +32,7 @@ test('extracts problem text, examples and constraints from description only', ()
 test('does not use unrelated page text while description is hydrating', () => {
   const dom = new JSDOM('<!doctype html><title>Two Sum - LeetCode</title><main>Full solution and all examples Easy</main>', { url: 'https://leetcode.com/problems/two-sum/', runScripts: 'outside-only' });
   dom.window.eval(script);
-  const result = dom.window.LeetBuddyExtractor.extractContext();
+  const result = dom.window.CodeCueExtractor.extractContext();
   assert.equal(result.statement, '');
   assert.equal(result.difficulty, '');
   assert.equal(result.ready, false);
@@ -43,7 +43,7 @@ test('new problem URL does not reuse the previous problem description during nav
   const dom = new JSDOM(`<!doctype html><title>Two Sum - LeetCode</title>${description}`, { url: 'https://leetcode.com/problems/two-sum/', runScripts: 'outside-only' });
   dom.window.eval(script);
   dom.window.history.pushState({}, '', '/problems/valid-parentheses/');
-  const stale = dom.window.LeetBuddyExtractor.extractContext();
+  const stale = dom.window.CodeCueExtractor.extractContext();
   assert.equal(stale.slug, 'valid-parentheses');
   assert.equal(stale.ready, false);
   dom.window.close();
